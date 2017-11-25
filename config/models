@@ -25,3 +25,8 @@ Aluno json
     
 Categoria json
     nome                    Text
+    
+Produto json
+	nome                    Text
+	valor                   Double
+	idCategoria             CategoriaId
