@@ -39,3 +39,7 @@ ContaCorrente json
     
 Alergeno json 
     nome                    Text
+    
+AlergenoProduto json
+    prodrgid                ProdutoId
+    alergid                 AlergenoId 
