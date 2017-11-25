@@ -13,3 +13,6 @@ Responsavel json
     cep                     Text
     idUsuario               UsuarioId
     sexo                    Text
+    
+Categoria json
+    nome                    Text
