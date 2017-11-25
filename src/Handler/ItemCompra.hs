@@ -26,3 +26,9 @@ putItemCompraWithIdR iid = do
     novoItemCompra <- requireJsonBody :: Handler ItemCompra
     runDB $ replace iid novoItemCompra
     sendStatusJSON noContent204 (object ["data" .= (iid)])
+    
+deleteItemCompraWithIdR :: ItemCompraId -> Handler Value
+deleteItemCompraWithIdR iid = do 
+    _ <- runDB $ get404 iid
+    runDB $ delete iid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey iid)])

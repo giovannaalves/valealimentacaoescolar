@@ -31,4 +31,4 @@
 /Compra/#CompraId                                                CompraWithIdR           GET PUT DELETE
 
 /ItemCompra                                                      ItemCompraInsereR       POST
-/ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT
+/ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
