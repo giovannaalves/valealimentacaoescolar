@@ -43,3 +43,8 @@ Alergeno json
 AlergenoProduto json
     prodrgid                ProdutoId
     alergid                 AlergenoId 
+    
+Compra json
+    idAluno		        	AlunoId
+    total		        	Double
+    dataCompra		        Text	
