@@ -17,4 +17,4 @@
 /Responsavel/#ResponsavelId                                      ResponsavelWithIdR      GET PUT DELETE
 
 /ContaCorrente                                                   ContaCorrenteInsereR	 POST
-/ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET
+/ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET DELETE

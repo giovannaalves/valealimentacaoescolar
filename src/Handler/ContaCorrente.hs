@@ -20,3 +20,8 @@ getContaCorrenteWithIdR cid = do
     contacorrente <- runDB $ get404 cid
     sendStatusJSON ok200 (object ["data" .= (toJSON contacorrente)])
     
+deleteContaCorrenteWithIdR :: ContaCorrenteId -> Handler Value
+deleteContaCorrenteWithIdR cid = do 
+    _ <- runDB $ get404 cid
+    runDB $ delete cid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)])
