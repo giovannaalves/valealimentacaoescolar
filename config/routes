@@ -28,4 +28,4 @@
 /AlergenoProduto/#AlergenoProdutoId                              AlergenoProdutoAWithIdR GET
 
 /Compra                                                          CompraInsereR           POST
-/Compra/#CompraId                                                CompraWithIdR           GET
+/Compra/#CompraId                                                CompraWithIdR           GET PUT
