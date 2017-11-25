@@ -14,3 +14,8 @@ postItemCompraInsereR = do
     itemCompra <- requireJsonBody :: Handler Compra
     iid <- runDB $ insert itemCompra
     sendStatusJSON created201 (object ["data" .= (fromSqlKey iid)])
+    
+getItemCompraWithIdR :: ItemCompraId -> Handler Value
+getItemCompraWithIdR iid = do 
+    itemCompra <- runDB $ get404 iid
+    sendStatusJSON ok200 (object ["data" .= (toJSON itemCompra)])
