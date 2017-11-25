@@ -18,3 +18,5 @@
 
 /ContaCorrente                                                   ContaCorrenteInsereR	 POST
 /ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET DELETE
+
+/Alergeno                                                        AlergenoInsereR         POST

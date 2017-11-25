@@ -35,4 +35,7 @@ ContaCorrente json
     idAluno                 AlunoId
     datac                   Text
     tipo 	   	            Int
-    saldo                   Text	
+    saldo                   Text
+    
+Alergeno json 
+    nome                    Text
