@@ -26,3 +26,9 @@ putCompraWithIdR cid = do
     novaCompra <- requireJsonBody :: Handler Compra
     runDB $ replace cid novaCompra
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)])
+
+deleteCompraWithIdR :: CompraId -> Handler Value
+deleteCompraWithIdR cid = do 
+    _ <- runDB $ get404 cid
+    runDB $ delete cid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)])
