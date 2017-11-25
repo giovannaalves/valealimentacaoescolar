@@ -57,7 +57,9 @@ ItemCompra json
 Restricao json
     idAluno                 AlunoId
     idProduto               ProdutoId
-    
+    UniqueRestricao         idAluno idProduto
+        
 AlergenoAluno json
     idAluno                 AlunoId
     idAlergeno              AlergenoId
+    UniqueAlergenoAluno     idAluno idAlergeno
