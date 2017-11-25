@@ -14,3 +14,8 @@ postCompraInsereR = do
     compra <- requireJsonBody :: Handler Compra
     cid <- runDB $ insert compra
     sendStatusJSON created201 (object ["data" .= (fromSqlKey cid)])
+
+getCompraWithIdR :: CompraId -> Handler Value
+getCompraWithIdR cid = do 
+    compra <- runDB $ get404 cid
+    sendStatusJSON ok200 (object ["data" .= (toJSON compra)])
