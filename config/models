@@ -1,0 +1,10 @@
+Responsavel json
+    nome                    Text
+    cpfResponsavel          Text
+    celular                 Text
+    telefone                Text
+    complemento             Text
+    numeroCasa              Int
+    cep                     Text
+    idUsuario               UsuarioId
+    sexo                    Text
