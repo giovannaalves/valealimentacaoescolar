@@ -9,8 +9,13 @@ import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 
-postAlergenoAlunoInsereR :: Handler Value
-postAlergenoAlunoInsereR = do
+postAlergenoProdutoInsereR :: Handler Value
+postAlergenoProdutoInsereR = do
     alergenoproduto <- requireJsonBody :: Handler AlergenoProduto
     apid <- runDB $ insert alergenoproduto
     sendStatusJSON created201 (object ["data" .= (fromSqlKey apid)])
+    
+getAlergenoProdutoAWithIdR :: AlergenoProdutoId -> Handler Value
+getAlergenoProdutoAWithIdR aid = do 
+    alergeno <- runDB $ get404 aid
+    sendStatusJSON ok200 (object ["data" .= (toJSON alergeno)])
