@@ -29,3 +29,5 @@
 
 /Compra                                                          CompraInsereR           POST
 /Compra/#CompraId                                                CompraWithIdR           GET PUT DELETE
+
+/ItemCompra                                                      ItemCompraInsereR       POST
