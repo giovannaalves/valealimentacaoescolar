@@ -19,3 +19,10 @@ getItemCompraWithIdR :: ItemCompraId -> Handler Value
 getItemCompraWithIdR iid = do 
     itemCompra <- runDB $ get404 iid
     sendStatusJSON ok200 (object ["data" .= (toJSON itemCompra)])
+    
+putItemCompraWithIdR :: ItemCompraId -> Handler Value
+putItemCompraWithIdR iid = do
+    _ <- runDB $ get404 iid
+    novoItemCompra <- requireJsonBody :: Handler ItemCompra
+    runDB $ replace iid novoItemCompra
+    sendStatusJSON noContent204 (object ["data" .= (iid)])
