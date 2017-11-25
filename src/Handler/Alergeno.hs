@@ -28,3 +28,9 @@ putAlergenoWithIdR aid = do
     novoAlergeno <- requireJsonBody :: Handler Alergeno
     runDB $ replace aid novoAlergeno
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
+    
+deleteAlergenoWithIdR  :: AlergenoId -> Handler Value
+deleteAlergenoWithIdR aid = do 
+    _ <- runDB $ get404 aid
+    runDB $ delete aid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
