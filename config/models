@@ -48,3 +48,8 @@ Compra json
     idAluno		        	AlunoId
     total		        	Double
     dataCompra		        Text	
+    
+ItemCompra json
+    idProduto		        ProdutoId
+    quantidade		        Int
+    valorItem		        Double	
