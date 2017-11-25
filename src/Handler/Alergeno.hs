@@ -16,3 +16,8 @@ postAlergenoInsereR = do
     alergeno <- requireJsonBody :: Handler Alergeno
     aid <- runDB $ insert alergeno
     sendStatusJSON created201 (object ["data" .= (fromSqlKey aid)])
+    
+getAlergenoWithIdR :: AlergenoId -> Handler Value
+getAlergenoWithIdR aid = do 
+    alergeno <- runDB $ get404 aid
+    sendStatusJSON ok200 (object ["data" .= (toJSON alergeno)])
