@@ -45,6 +45,7 @@ import Handler.Responsavel
 import Handler.ContaCorrente
 import Handler.Alergeno
 import Handler.AlergenoProduto
+import Handler.Compra
 
 
 -- This line actually creates our YesodDispatch instance. It is the second half

@@ -26,3 +26,5 @@
 
 /AlergenoProduto                                                 AlergenoProdutoInsereR  POST
 /AlergenoProduto/#AlergenoProdutoId                              AlergenoProdutoAWithIdR GET
+
+/Compra                                                          CompraInsereR           POST
