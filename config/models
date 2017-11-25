@@ -13,6 +13,15 @@ Responsavel json
     cep                     Text
     idUsuario               UsuarioId
     sexo                    Text
+
+Aluno json
+    nome                    Text
+    limite                  Double
+    cpfResponsavel          Text
+    sexo                    Text
+    status                  Text
+    idUsuario               UsuarioId
+    dataNascimento          Text
     
 Categoria json
     nome                    Text
