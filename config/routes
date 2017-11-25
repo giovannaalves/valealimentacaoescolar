@@ -10,9 +10,10 @@
 /Usuario/#UsuarioId/apagar    	     	                         UsuarioApagarR          DELETE
 
 /Categoria    						                             CategoriaInsereR  		 POST
-Categoria/#CategoriaId                                           CategoriaWithIdR        GET PUT DELETE
+/Categoria/#CategoriaId                                           CategoriaWithIdR       GET PUT DELETE
 
 /Produto                                                         ProdutoInsereR          POST
+/Produto/#ProdutoId                                              ProdutoWithIdR          GET
 
 
 /Responsavel                                                     ResponsavelInsereR      POST
