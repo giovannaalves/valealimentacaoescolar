@@ -10,7 +10,7 @@
 /Usuario/#UsuarioId/apagar    	     	                         UsuarioApagarR          DELETE
 
 /Categoria    						                             CategoriaInsereR  		 POST
-/Categoria/#CategoriaId                                           CategoriaWithIdR       GET PUT DELETE
+/Categoria/#CategoriaId                                          CategoriaWithIdR       GET PUT DELETE
 
 /Produto                                                         ProdutoInsereR          POST
 /Produto/#ProdutoId                                              ProdutoWithIdR          GET PUT DELETE
@@ -32,3 +32,5 @@
 
 /ItemCompra                                                      ItemCompraInsereR       POST
 /ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
+
+/Restricao                                                       RestricaoInsereR        POST
