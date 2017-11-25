@@ -14,3 +14,8 @@ postCategoriaInsereR = do
     categoria <- requireJsonBody :: Handler Categoria
     cid <- runDB $ insert categoria
     sendStatusJSON created201 (object ["data" .= (fromSqlKey cid)])
+    
+getCategoriaBuscarR :: CategoriaId -> Handler Value
+getCategoriaBuscarR cid = do 
+categoria <- runDB $ get404 cid
+sendStatusJSON ok200 (object ["data" .= (toJSON categoria)])

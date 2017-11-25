@@ -10,3 +10,4 @@
 /Usuario/#UsuarioId/apagar    	     	UsuarioApagarR          DELETE
 
 /Categoria    						    CategoriaInsereR  		POST
+/Categoria/#CategoriaId/buscar	   		CategoriaBuscarR	   	GET
