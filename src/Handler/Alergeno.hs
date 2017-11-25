@@ -21,3 +21,10 @@ getAlergenoWithIdR :: AlergenoId -> Handler Value
 getAlergenoWithIdR aid = do 
     alergeno <- runDB $ get404 aid
     sendStatusJSON ok200 (object ["data" .= (toJSON alergeno)])
+    
+putAlergenoWithIdR :: AlergenoId -> Handler Value
+putAlergenoWithIdR aid = do
+    _ <- runDB $ get404 aid
+    novoAlergeno <- requireJsonBody :: Handler Alergeno
+    runDB $ replace aid novoAlergeno
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
