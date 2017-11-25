@@ -53,3 +53,7 @@ ItemCompra json
     idProduto		        ProdutoId
     quantidade		        Int
     valorItem		        Double	
+    
+Restricao json
+    idAluno                 AlunoId
+    idProduto               ProdutoId
