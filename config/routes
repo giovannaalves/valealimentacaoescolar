@@ -21,3 +21,5 @@
 
 /Alergeno                                                        AlergenoInsereR         POST
 /Alergeno/#AlergenoId                                            AlergenoWithIdR         GET PUT DELETE
+
+/AlergenoProduto                                                 AlergenoAlunoInsereR    POST
