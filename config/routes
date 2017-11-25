@@ -11,3 +11,4 @@
 
 /Categoria    						    CategoriaInsereR  		POST
 /Categoria/#CategoriaId/buscar	   		CategoriaBuscarR	   	GET
+/Categoria/#CategoriaId/apagar    	    CategoriaApagarR        DELETE

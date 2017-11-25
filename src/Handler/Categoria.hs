@@ -19,3 +19,9 @@ getCategoriaBuscarR :: CategoriaId -> Handler Value
 getCategoriaBuscarR cid = do 
 categoria <- runDB $ get404 cid
 sendStatusJSON ok200 (object ["data" .= (toJSON categoria)])
+
+deleteCategoriaApagarR :: UsuarioId -> Handler Value
+deleteCategoriaApagarR cid = do 
+    _ <- runDB $ get404 cid
+    runDB $ delete cid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)])
