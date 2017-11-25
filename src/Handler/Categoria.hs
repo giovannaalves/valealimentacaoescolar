@@ -30,5 +30,5 @@ putCategoriaWithIdR :: CategoriaId -> Handler Value
 putCategoriaWithIdR cid = do
     _ <- runDB $ get404 cid
     novaCategoria <- requireJsonBody :: Handler Categoria
-    runDB $ replace aid novaCategoria
+    runDB $ replace cid novaCategoria
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)]) 

@@ -21,8 +21,14 @@ getProdutoWithIdR pid = do
     sendStatusJSON ok200 (object ["data" .= (toJSON produto)])
 
 putProdutoWithIdR :: ProdutoId -> Handler Value
-putProdutoWithIdR rid = do
-    _ <- runDB $ get404 rid
+putProdutoWithIdR pid = do
+    _ <- runDB $ get404 pid
     novoProduto <- requireJsonBody :: Handler Produto
     runDB $ replace pid novoProduto
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey pid)])
+    
+deleteProdutoWithIdR :: ProdutoId -> Handler Value
+deleteProdutoWithIdR pid = do 
+    _ <- runDB $ get404 pid
+    runDB $ delete pid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey pid)])
