@@ -10,8 +10,8 @@
 /Usuario/#UsuarioId/apagar    	     	                         UsuarioApagarR          DELETE
 
 /Categoria    						                             CategoriaInsereR  		 POST
-/Categoria/#CategoriaId/buscar	   		                         CategoriaBuscarR	     GET
-/Categoria/#CategoriaId/apagar    	                             CategoriaApagarR        DELETE
+Categoria/#CategoriaId                                           CategoriaWithIdR        GET PUT DELETE
+
 
 /Responsavel                                                     ResponsavelInsereR      POST
 /Responsavel/#ResponsavelId                                      ResponsavelWithIdR      GET PUT DELETE
@@ -24,3 +24,4 @@
 
 /AlergenoProduto                                                 AlergenoProdutoInsereR  POST
 /AlergenoProduto/#AlergenoProdutoId                              AlergenoProdutoAWithIdR GET
+
