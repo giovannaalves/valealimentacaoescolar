@@ -24,3 +24,11 @@ getResponsavelWithIdR rid = do
     responsavel <- runDB $ get404 rid
     sendStatusJSON ok200 (object ["data" .= (toJSON responsavel)])
     
+    
+putResponsavelWithIdR :: ResponsavelId -> Handler Value
+putResponsavelWithIdR rid = do
+    _ <- runDB $ get404 rid
+    novoResponsavel <- requireJsonBody :: Handler Responsavel
+    runDB $ replace rid novoResponsavel
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey rid)])
+    
