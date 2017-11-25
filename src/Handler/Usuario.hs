@@ -20,3 +20,10 @@ getUsuarioBuscarR uid = do
     usuario <- runDB $ get404 uid
     sendStatusJSON ok200 (object ["data" .= (toJSON usuario)])
     
+deleteUsuarioApagarR :: UsuarioId -> Handler Value
+deleteUsuarioApagarR uid = do 
+    _ <- runDB $ get404 uid
+    runDB $ delete uid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey uid)])
+
+    
