@@ -14,4 +14,4 @@
 /Categoria/#CategoriaId/apagar    	                             CategoriaApagarR        DELETE
 
 /Responsavel                                                     ResponsavelInsereR      POST
-/Responsavel/#ResponsavelId                                      ResponsavelWithIdR      GET PUT
+/Responsavel/#ResponsavelId                                      ResponsavelWithIdR      GET PUT DELETE

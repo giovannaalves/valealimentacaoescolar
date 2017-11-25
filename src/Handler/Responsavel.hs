@@ -31,4 +31,9 @@ putResponsavelWithIdR rid = do
     novoResponsavel <- requireJsonBody :: Handler Responsavel
     runDB $ replace rid novoResponsavel
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey rid)])
-    
+
+deleteResponsavelWithIdR :: ResponsavelId -> Handler Value
+deleteResponsavelWithIdR rid = do 
+    _ <- runDB $ get404 rid
+    runDB $ delete rid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey rid)])
