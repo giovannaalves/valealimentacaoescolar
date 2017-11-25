@@ -1,3 +1,7 @@
+Usuario json
+    usuario                 Text
+    senha                   Text
+    email                   Text
 
 Responsavel json
     nome                    Text
