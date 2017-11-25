@@ -30,3 +30,9 @@ Produto json
 	nome                    Text
 	valor                   Double
 	idCategoria             CategoriaId
+	
+ContaCorrente json 
+    idAluno                 AlunoId
+    datac                   Text
+    tipo 	   	            Int
+    saldo                   Text	
