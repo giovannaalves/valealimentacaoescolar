@@ -6,3 +6,4 @@
 / HomeR GET 
 
 /Usuario    						    UsuarioInsereR  		POST
+/Usuario/#UsuarioId/buscar	   		    UsuarioBuscarR	   	    GET
