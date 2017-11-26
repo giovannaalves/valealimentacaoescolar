@@ -8,6 +8,7 @@
 /Usuario    						                             UsuarioInsereR  		 POST
 /Usuario/#UsuarioId/buscar	   		                             UsuarioBuscarR	   	     GET
 /Usuario/#UsuarioId/apagar    	     	                         UsuarioApagarR          DELETE
+/Usuario/#UsuarioId/editar                                       UsuarioEditarR          PUT
 
 /Categoria    						                             CategoriaInsereR  		 POST
 /Categoria/#CategoriaId                                          CategoriaWithIdR       GET PUT DELETE

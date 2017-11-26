@@ -26,4 +26,9 @@ deleteUsuarioApagarR uid = do
     runDB $ delete uid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey uid)])
 
-    
+putUsuarioEditarR :: UsuarioId -> Handler Value
+putUsuarioEditarR uid = do
+    _ <- runDB $ get404 uid
+    novoUsuario<- requireJsonBody :: Handler Usuario
+    runDB $ replace uid novoUsuario
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey uid)])
