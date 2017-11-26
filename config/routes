@@ -25,7 +25,7 @@
 /Alergeno/#AlergenoId                                            AlergenoWithIdR         GET PUT DELETE
 
 /AlergenoProduto                                                 AlergenoProdutoInsereR  POST
-/AlergenoProduto/#AlergenoProdutoId                              AlergenoProdutoAWithIdR GET
+/AlergenoProduto/#AlergenoProdutoId                              AlergenoProdutoAWithIdR GET PUT
 
 /Compra                                                          CompraInsereR           POST
 /Compra/#CompraId                                                CompraWithIdR           GET PUT DELETE
