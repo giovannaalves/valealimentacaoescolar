@@ -21,3 +21,10 @@ getRestricaoByAlunoR rid = do
     pids <- return $ fmap restricaoIdProduto restricoes 
     produtos <- sequence $ fmap (\pid -> runDB $ get404 pid) pids
     sendStatusJSON ok200 (object ["data" .= (toJSON produtos)])
+
+--  UniqueRestricao         idAluno idProduto
+deleteRestricaoDeleteR :: AlunoId -> ProdutoId -> Handler Value
+deleteRestricaoDeleteR aid pid = do 
+    runDB $ deleteBy $ UniqueRestricao aid pid
+    sendStatusJSON noContent204 emptyObject
+	

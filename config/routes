@@ -36,3 +36,4 @@
 
 /Restricao                                                       RestricaoInsereR        POST
 /Restricao/#AlunoId                                              RestricaoByAlunoR       GET
+/Restricao/#AlunoId/#ProdutoId                                   RestricaoDeleteR        DELETE
