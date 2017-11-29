@@ -35,3 +35,4 @@
 /ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
 
 /Restricao                                                       RestricaoInsereR        POST
+/Restricao/#AlunoId                                              RestricaoByAlunoR       GET
