@@ -41,8 +41,9 @@ Alergeno json
     nome                    Text
     
 AlergenoProduto json
-    prodrgid                ProdutoId
+    prodid                  ProdutoId
     alergid                 AlergenoId 
+    UniqueAlergenoProduto   alergid prodid
     
 Compra json
     idAluno		        	AlunoId
