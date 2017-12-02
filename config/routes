@@ -40,3 +40,4 @@
 /Restricao/#AlunoId/#ProdutoId                                   RestricaoDeleteR        DELETE
 
 /Aluno                                                           AlunoInsereR            POST
+/Aluno/#AlunoId                                                  AlunoWithIdR            GET 
