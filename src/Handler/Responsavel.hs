@@ -9,10 +9,14 @@ import Import
 --import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 
+getResponsavelR :: Handler Value
+getResponsavelR = do
+    responsaveis <- runDB $ selectList [] [Asc ResponsavelNome]
+    sendStatusJSON ok200 (object ["data" .= (toJSON responsaveis)])
 
 --insert into responsavel values (...)
-postResponsavelInsereR :: Handler Value
-postResponsavelInsereR = do
+postResponsavelR :: Handler Value
+postResponsavelR = do
     responsavel <- requireJsonBody :: Handler Responsavel
     rid <- runDB $ insert responsavel
     sendStatusJSON created201 (object ["data" .= (fromSqlKey rid)])

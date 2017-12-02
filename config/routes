@@ -16,7 +16,7 @@
 /Produto                                                         ProdutoInsereR          POST
 /Produto/#ProdutoId                                              ProdutoWithIdR          GET PUT DELETE
 
-/Responsavel                                                     ResponsavelInsereR      POST
+/Responsavel                                                     ResponsavelR            GET POST
 /Responsavel/#ResponsavelId                                      ResponsavelWithIdR      GET PUT DELETE
 
 /ContaCorrente                                                   ContaCorrenteInsereR	 POST
