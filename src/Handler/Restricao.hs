@@ -8,9 +8,9 @@ module Handler.Restricao where
 import Import
 import Database.Persist.Postgresql
 
-postRestricaoInsereR :: Handler Value
-postRestricaoInsereR = do
-    restricao <- requireJsonBody :: Handler Restricao
+postRestricaoR :: AlunoId -> ProdutoId -> Handler Value
+postRestricaoR alunoid produtoid = do
+    restricao <- return $ Restricao alunoid produtoid
     rid <- runDB $ insert restricao
     sendStatusJSON created201 (object ["data" .= (fromSqlKey rid)])
 
@@ -23,8 +23,7 @@ getRestricaoByAlunoR rid = do
     sendStatusJSON ok200 (object ["data" .= (toJSON produtos)])
 
 --  UniqueRestricao         idAluno idProduto
-deleteRestricaoDeleteR :: AlunoId -> ProdutoId -> Handler Value
-deleteRestricaoDeleteR aid pid = do 
+deleteRestricaoR :: AlunoId -> ProdutoId -> Handler Value
+deleteRestricaoR aid pid = do 
     runDB $ deleteBy $ UniqueRestricao aid pid
     sendStatusJSON noContent204 emptyObject
-	
