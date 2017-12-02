@@ -35,8 +35,8 @@
 /Aluno/#AlunoId/Restricoes                                       RestricaoByAlunoR       OPTIONS GET
 /Restricao/#AlunoId/#ProdutoId                                   RestricaoR              OPTIONS POST DELETE
 
-/Aluno                                                           AlunoR                  GET POST
-/Aluno/#AlunoId                                                  AlunoWithIdR            GET PUT DELETE
+/Aluno                                                           AlunoR                  OPTIONS GET POST
+/Aluno/#AlunoId                                                  AlunoWithIdR            OPTIONS GET PUT DELETE
 
 /Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        OPTIONS GET
 /Aluno/#AlunoId/Alergeno/#AlergenoId                             AlergenoAlunoR          OPTIONS POST DELETE
