@@ -9,8 +9,13 @@ import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 
-postCategoriaInsereR :: Handler Value
-postCategoriaInsereR = do
+getCategoriaR :: Handler Value
+getCategoriaR = do
+    categorias <- runDB $ selectList [] [Asc CategoriaNome]
+    sendStatusJSON ok200 (object ["data" .= (toJSON categorias)])
+
+postCategoriaR :: Handler Value
+postCategoriaR = do
     categoria <- requireJsonBody :: Handler Categoria
     cid <- runDB $ insert categoria
     sendStatusJSON created201 (object ["data" .= (fromSqlKey cid)])

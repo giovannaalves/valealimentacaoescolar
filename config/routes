@@ -8,7 +8,7 @@
 /Usuario    						                             UsuarioR  	        	 GET POST
 /Usuario/#UsuarioId      	   		                             UsuarioWithIdR          GET PUT DELETE
 
-/Categoria    						                             CategoriaInsereR  		 POST
+/Categoria    						                             CategoriaR  		     GET POST
 /Categoria/#CategoriaId                                          CategoriaWithIdR        GET PUT DELETE
 
 /Produto                                                         ProdutoR                GET POST
