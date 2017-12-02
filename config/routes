@@ -5,8 +5,8 @@
 
 /                                                                HomeR                   GET
 
-/Usuario    						                             UsuarioR  	        	 GET POST
-/Usuario/#UsuarioId      	   		                             UsuarioWithIdR          GET PUT DELETE
+/Usuario    						                             UsuarioR  	        	 OPTIONS GET POST
+/Usuario/#UsuarioId      	   		                             UsuarioWithIdR          OPTIONS GET PUT DELETE
 
 /Categoria    						                             CategoriaR  		     GET POST
 /Categoria/#CategoriaId                                          CategoriaWithIdR        GET PUT DELETE
@@ -32,11 +32,11 @@
 /ItemCompra                                                      ItemCompraInsereR       POST
 /ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
 
-/Aluno/#AlunoId/Restricoes                                       RestricaoByAlunoR       GET
-/Restricao/#AlunoId/#ProdutoId                                   RestricaoR              POST DELETE
+/Aluno/#AlunoId/Restricoes                                       RestricaoByAlunoR       OPTIONS GET
+/Restricao/#AlunoId/#ProdutoId                                   RestricaoR              OPTIONS POST DELETE
 
 /Aluno                                                           AlunoR                  GET POST
 /Aluno/#AlunoId                                                  AlunoWithIdR            GET PUT DELETE
 
-/Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        GET
-/Aluno/#AlunoId/Alergeno/#AlergenoId                             AlergenoAlunoR          POST DELETE
+/Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        OPTIONS GET
+/Aluno/#AlunoId/Alergeno/#AlergenoId                             AlergenoAlunoR          OPTIONS POST DELETE
