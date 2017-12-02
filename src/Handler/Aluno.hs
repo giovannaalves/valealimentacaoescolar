@@ -20,3 +20,10 @@ getAlunoWithIdR :: AlunoId -> Handler Value
 getAlunoWithIdR aid = do 
     aluno <- runDB $ get404 aid
     sendStatusJSON ok200 (object ["data" .= (toJSON aluno)])
+    
+putAlunoWithIdR :: AlunoId -> Handler Value
+putAlunoWithIdR aid = do
+    _ <- runDB $ get404 aid
+    novoAluno <- requireJsonBody :: Handler Aluno
+    runDB $ replace aid novoAluno
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
