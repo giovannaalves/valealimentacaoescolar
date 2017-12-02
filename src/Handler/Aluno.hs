@@ -8,6 +8,10 @@ module Handler.Aluno where
 import Import
 
 import Database.Persist.Postgresql
+import Handler.EnableCors
+
+optionsAlunoR :: Handler Value
+optionsAlunoR = optionGenerico "OPTIONS, GET, POST"
 
 getAlunoR :: Handler Value
 getAlunoR = do
@@ -20,11 +24,15 @@ postAlunoR = do
     aid <- runDB $ insert aluno
     sendStatusJSON created201 (object ["data" .= (fromSqlKey aid)])
 
+
+optionsAlunoWithIdR :: AlunoId -> Handler Value
+optionsAlunoWithIdR _ = optionGenerico "OPTIONS, GET, PUT, DELETE"
+
 getAlunoWithIdR :: AlunoId -> Handler Value
 getAlunoWithIdR aid = do 
     aluno <- runDB $ get404 aid
     sendStatusJSON ok200 (object ["data" .= (toJSON aluno)])
-    
+
 putAlunoWithIdR :: AlunoId -> Handler Value
 putAlunoWithIdR aid = do
     _ <- runDB $ get404 aid

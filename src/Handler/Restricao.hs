@@ -14,17 +14,20 @@ optionsRestricaoByAlunoR _ = optionGenerico "OPTIONS, GET"
 
 getRestricaoByAlunoR :: AlunoId -> Handler Value
 getRestricaoByAlunoR rid = do 
+    addCorsHeader "GET"
     restricoes' <- runDB $ selectList [RestricaoIdAluno ==. rid] []
     restricoes <- return $ fmap (\(Entity _ alo) -> alo) restricoes'
     pids <- return $ fmap restricaoIdProduto restricoes 
     produtos <- sequence $ fmap (\pid -> runDB $ get404 pid) pids
     sendStatusJSON ok200 (object ["data" .= (toJSON produtos)])
 
+
 optionsRestricaoR :: AlunoId -> ProdutoId -> Handler Value
 optionsRestricaoR _ _ = optionGenerico "OPTIONS, POST, DELETE"
 
 postRestricaoR :: AlunoId -> ProdutoId -> Handler Value
 postRestricaoR alunoid produtoid = do
+    addCorsHeader "POST"
     restricao <- return $ Restricao alunoid produtoid
     rid <- runDB $ insert restricao
     sendStatusJSON created201 (object ["data" .= (fromSqlKey rid)])
@@ -32,5 +35,6 @@ postRestricaoR alunoid produtoid = do
 --  UniqueRestricao         idAluno idProduto
 deleteRestricaoR :: AlunoId -> ProdutoId -> Handler Value
 deleteRestricaoR aid pid = do 
+    addCorsHeader "DELETE"
     runDB $ deleteBy $ UniqueRestricao aid pid
     sendStatusJSON noContent204 emptyObject

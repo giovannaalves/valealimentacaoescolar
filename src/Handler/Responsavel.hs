@@ -9,12 +9,9 @@ module Handler.Responsavel where
 
 import Import
 import Database.Persist.Postgresql
---import Control.Monad (replicateM)
 import System.Random
 import qualified Data.Text as T (pack)
---random_passwd = replicateM 10 $ ['A'..'Z'] ++ ['a'..'z'] ++ (fmap ((!!0).show) [0..9])
 import Handler.EnableCors
-
 -- tipo generico para o aeson
 import GHC.Generics
 --transformar o json em responsavel dto
