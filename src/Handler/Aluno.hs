@@ -9,9 +9,13 @@ import Import
 
 import Database.Persist.Postgresql
 
+getAlunoR :: Handler Value
+getAlunoR = do
+    alunos <- runDB $ selectList [] [Asc AlunoNome]
+    sendStatusJSON ok200 (object ["data" .= (toJSON alunos)])
 
-postAlunoInsereR :: Handler Value
-postAlunoInsereR = do
+postAlunoR :: Handler Value
+postAlunoR = do
     aluno <- requireJsonBody :: Handler Aluno
     aid <- runDB $ insert aluno
     sendStatusJSON created201 (object ["data" .= (fromSqlKey aid)])

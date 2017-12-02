@@ -37,7 +37,7 @@
 /Aluno/#AlunoId/Restricoes                                       RestricaoByAlunoR       GET
 /Restricao/#AlunoId/#ProdutoId                                   RestricaoR              POST DELETE
 
-/Aluno                                                           AlunoInsereR            POST
+/Aluno                                                           AlunoR                  GET POST
 /Aluno/#AlunoId                                                  AlunoWithIdR            GET PUT DELETE
 
 /Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        GET
