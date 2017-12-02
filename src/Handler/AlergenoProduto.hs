@@ -9,25 +9,21 @@ import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 
-postAlergenoProdutoInsereR :: Handler Value
-postAlergenoProdutoInsereR = do
-    alergenoproduto <- requireJsonBody :: Handler AlergenoProduto
-    apid <- runDB $ insert alergenoproduto
-    sendStatusJSON created201 (object ["data" .= (fromSqlKey apid)])
-    
-getAlergenoProdutoAWithIdR :: AlergenoProdutoId -> Handler Value
-getAlergenoProdutoAWithIdR aid = do 
-    alergeno <- runDB $ get404 aid
-    sendStatusJSON ok200 (object ["data" .= (toJSON alergeno)])
+postAlergenoProdutoR :: ProdutoId -> AlergenoId -> Handler Value
+postAlergenoProdutoR produtoid alergenoid = do
+    alergenoproduto <- return $ AlergenoProduto produtoid alergenoid
+    ppid <- runDB $ insert alergenoproduto
+    sendStatusJSON created201 (object ["data" .= (fromSqlKey ppid)])
 
-putAlergenoProdutoAWithIdR :: AlergenoProdutoId -> Handler Value
-putAlergenoProdutoAWithIdR apid = do
-    _ <- runDB $ get404 apid
-    novoAlergenoProduto <- requireJsonBody :: Handler AlergenoProduto
-    runDB $ replace apid novoAlergenoProduto
-    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey apid)])
+getAlergenoByProdutoR :: ProdutoId -> Handler Value
+getAlergenoByProdutoR ppid = do 
+    alergenos' <- runDB $ selectList [AlergenoProdutoProdid ==. ppid] []
+    alergenos <- return $ fmap (\(Entity _ alo) -> alo) alergenos'
+    pids <- return $ fmap alergenoProdutoAlergid alergenos 
+    alergenos <- sequence $ fmap (\pid -> runDB $ get404 pid) pids
+    sendStatusJSON ok200 (object ["data" .= (toJSON alergenos)])
 
-deleteAlergenoProdutoDeleteR  :: AlergenoId -> ProdutoId -> Handler Value
-deleteAlergenoProdutoDeleteR aid pid = do 
-    runDB $ deleteBy $ UniqueAlergenoProduto aid pid
+deleteAlergenoProdutoR :: ProdutoId -> AlergenoId -> Handler Value
+deleteAlergenoProdutoR pid aid = do 
+    runDB $ deleteBy $ UniqueAlergenoProduto pid aid
     sendStatusJSON noContent204 emptyObject

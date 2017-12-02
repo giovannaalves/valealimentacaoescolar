@@ -43,7 +43,7 @@ Alergeno json
 AlergenoProduto json
     prodid                  ProdutoId
     alergid                 AlergenoId 
-    UniqueAlergenoProduto   alergid prodid
+    UniqueAlergenoProduto   prodid alergid
     
 Compra json
     idAluno		        	AlunoId
