@@ -11,8 +11,13 @@ import Database.Persist.Postgresql
 
 -- $ curl -v -X POST https://haskdelta-romefeller.alergeno -d '{"nome":"Giovanna","limite":22.5,"cpf":"488258966333", "respid":1}'
 -- insert into Alergeno values ('lactose')
-postAlergenoInsereR :: Handler Value
-postAlergenoInsereR = do
+getAlergenoR :: Handler Value
+getAlergenoR = do
+    alergenos <- runDB $ selectList [] [Asc AlergenoNome]
+    sendStatusJSON ok200 (object ["data" .= (toJSON alergenos)])
+
+postAlergenoR :: Handler Value
+postAlergenoR = do
     alergeno <- requireJsonBody :: Handler Alergeno
     aid <- runDB $ insert alergeno
     sendStatusJSON created201 (object ["data" .= (fromSqlKey aid)])

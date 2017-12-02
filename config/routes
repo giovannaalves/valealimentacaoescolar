@@ -5,13 +5,11 @@
 
 /                                                                HomeR                   GET
 
-/Usuario    						                             UsuarioInsereR  		 POST
-/Usuario/#UsuarioId/buscar	   		                             UsuarioBuscarR	   	     GET
-/Usuario/#UsuarioId/apagar    	     	                         UsuarioApagarR          DELETE
-/Usuario/#UsuarioId/editar                                       UsuarioEditarR          PUT
+/Usuario    						                             UsuarioR  	        	 GET POST
+/Usuario/#UsuarioId      	   		                             UsuarioWithIdR          GET PUT DELETE
 
 /Categoria    						                             CategoriaInsereR  		 POST
-/Categoria/#CategoriaId                                          CategoriaWithIdR       GET PUT DELETE
+/Categoria/#CategoriaId                                          CategoriaWithIdR        GET PUT DELETE
 
 /Produto                                                         ProdutoInsereR          POST
 /Produto/#ProdutoId                                              ProdutoWithIdR          GET PUT DELETE
@@ -22,11 +20,11 @@
 /ContaCorrente                                                   ContaCorrenteInsereR	 POST
 /ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET DELETE
 
-/Alergeno                                                        AlergenoInsereR         POST
+/Alergeno                                                        AlergenoR               GET POST
 /Alergeno/#AlergenoId                                            AlergenoWithIdR         GET PUT DELETE
 
-/Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR        GET
-/Produto/#ProdutoId/Alergeno/#AlergenoId                         AlergenoProdutoR          POST DELETE
+/Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR      GET
+/Produto/#ProdutoId/Alergeno/#AlergenoId                         AlergenoProdutoR        POST DELETE
 
 /Compra                                                          CompraInsereR           POST
 /Compra/#CompraId                                                CompraWithIdR           GET PUT DELETE

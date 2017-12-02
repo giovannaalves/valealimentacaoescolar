@@ -1,7 +1,8 @@
 Usuario json
-    usuario                 Text
+    login                   Text
     senha                   Text
     email                   Text
+    tipo                    Int
 
 Responsavel json
     nome                    Text
