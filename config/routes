@@ -36,8 +36,10 @@
 /ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
 
 /Restricao                                                       RestricaoInsereR        POST
-/Restricao/#AlunoId                                              RestricaoByAlunoR       GET
+/Aluno/#AlunoId/Restricoes                                       RestricaoByAlunoR       GET
 /Restricao/#AlunoId/#ProdutoId                                   RestricaoDeleteR        DELETE
 
 /Aluno                                                           AlunoInsereR            POST
 /Aluno/#AlunoId                                                  AlunoWithIdR            GET PUT DELETE
+
+/Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        GET
