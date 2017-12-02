@@ -27,3 +27,9 @@ putAlunoWithIdR aid = do
     novoAluno <- requireJsonBody :: Handler Aluno
     runDB $ replace aid novoAluno
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
+
+deleteAlunoWithIdR :: AlunoId -> Handler Value
+deleteAlunoWithIdR aid = do 
+    _ <- runDB $ get404 aid
+    runDB $ delete aid
+    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
