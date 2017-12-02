@@ -8,11 +8,15 @@ module Handler.Compra where
 import Import
 --import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
+import Data.Time.Clock
+import Data.Time.Calendar
 
 postCompraInsereR :: Handler Value
 postCompraInsereR = do
     compra <- requireJsonBody :: Handler Compra
     cid <- runDB $ insert compra
+    contacorrente <- return $ ContaCorrente (compraIdAluno compra) "2017-12-02" 1 (compraTotal compra)
+    _ <- runDB $ insert contacorrente
     sendStatusJSON created201 (object ["data" .= (fromSqlKey cid)])
 
 getCompraWithIdR :: CompraId -> Handler Value
