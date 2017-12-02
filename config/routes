@@ -23,8 +23,8 @@
 /Alergeno                                                        AlergenoR               GET POST
 /Alergeno/#AlergenoId                                            AlergenoWithIdR         GET PUT DELETE
 
-/Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR      GET
-/Produto/#ProdutoId/Alergeno/#AlergenoId                         AlergenoProdutoR        POST DELETE
+/Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR      OPTIONS GET
+/Produto/#ProdutoId/Alergeno/#AlergenoId                         AlergenoProdutoR        OPTIONS POST DELETE
 
 /Compra                                                          CompraInsereR           POST
 /Compra/#CompraId                                                CompraWithIdR           GET PUT DELETE
