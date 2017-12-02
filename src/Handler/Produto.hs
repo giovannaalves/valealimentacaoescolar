@@ -9,8 +9,13 @@ import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 
-postProdutoInsereR :: Handler Value
-postProdutoInsereR = do
+getProdutoR :: Handler Value
+getProdutoR = do
+    produtos <- runDB $ selectList [] [Asc ProdutoNome]
+    sendStatusJSON ok200 (object ["data" .= (toJSON produtos)])
+    
+postProdutoR :: Handler Value
+postProdutoR = do
     produto <- requireJsonBody :: Handler Produto
     pid <- runDB $ insert produto
     sendStatusJSON created201 (object ["data" .= (fromSqlKey pid)])

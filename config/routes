@@ -11,7 +11,7 @@
 /Categoria    						                             CategoriaInsereR  		 POST
 /Categoria/#CategoriaId                                          CategoriaWithIdR        GET PUT DELETE
 
-/Produto                                                         ProdutoInsereR          POST
+/Produto                                                         ProdutoR                GET POST
 /Produto/#ProdutoId                                              ProdutoWithIdR          GET PUT DELETE
 
 /Responsavel                                                     ResponsavelR            GET POST
