@@ -8,8 +8,8 @@
 /Usuario    						                             UsuarioR  	        	 OPTIONS GET POST
 /Usuario/#UsuarioId      	   		                             UsuarioWithIdR          OPTIONS GET PUT DELETE
 
-/Categoria    						                             CategoriaR  		     GET POST
-/Categoria/#CategoriaId                                          CategoriaWithIdR        GET PUT DELETE
+/Categoria    						                             CategoriaR  		     OPTIONS GET POST
+/Categoria/#CategoriaId                                          CategoriaWithIdR        OPTIONS GET PUT DELETE
 
 /Produto                                                         ProdutoR                OPTIONS GET POST
 /Produto/#ProdutoId                                              ProdutoWithIdR          OPTIONS GET PUT DELETE
