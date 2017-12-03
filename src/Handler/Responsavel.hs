@@ -13,9 +13,9 @@ import System.Random
 import qualified Data.Text as T (pack)
 import Handler.EnableCors
 -- tipo generico para o aeson
-import GHC.Generics
+--import GHC.Generics
 --transformar o json em responsavel dto
-import Data.Aeson
+--import Data.Aeson
 
 getRandom :: IO Text
 getRandom = do

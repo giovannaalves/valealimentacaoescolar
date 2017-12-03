@@ -20,7 +20,7 @@
 /ContaCorrente                                                   ContaCorrenteInsereR	 POST
 /ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET DELETE
 
-/Alergeno                                                        AlergenoR               GET POST
+/Alergeno                                                        AlergenoR               OPTIONS GET POST
 /Alergeno/#AlergenoId                                            AlergenoWithIdR         GET PUT DELETE
 
 /Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR      OPTIONS GET

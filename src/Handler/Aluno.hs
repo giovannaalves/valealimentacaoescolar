@@ -3,12 +3,39 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE DeriveGeneric #-}
+
 module Handler.Aluno where
 
 import Import
 
 import Database.Persist.Postgresql
+import System.Random
 import Handler.EnableCors
+--import GHC.Generics
+--import Data.Aeson
+import qualified Data.Text as T (pack)
+
+data AlunoDto = AlunoDto
+    { nome           :: Text
+    , limite         :: Double
+    , cpfResponsavel :: Text
+    , sexo           :: Text
+    , status         :: Text
+    , dataNascimento :: Text
+    , login          :: Text
+    , email          :: Text
+      } deriving (Show, Generic)
+
+instance FromJSON AlunoDto
+instance ToJSON AlunoDto
+
+
+
+getRandom :: IO Text
+getRandom = do
+    g <- getStdGen
+    return $ T.pack $ take 10 (randomRs ('a','z') g) 
 
 optionsAlunoR :: Handler Value
 optionsAlunoR = optionGenerico "OPTIONS, GET, POST"
@@ -20,10 +47,14 @@ getAlunoR = do
 
 postAlunoR :: Handler Value
 postAlunoR = do
-    aluno <- requireJsonBody :: Handler Aluno
+    addCorsHeader "POST"
+    alunoDto <- requireJsonBody :: Handler AlunoDto
+    password <- liftIO $ getRandom
+    let usuario = Usuario (nome alunoDto) password (email alunoDto) 4
+    uid <- runDB $ insert usuario
+    let aluno = Aluno (nome alunoDto) (limite alunoDto) (cpfResponsavel alunoDto) (sexo alunoDto) (status alunoDto) uid (dataNascimento alunoDto)  
     aid <- runDB $ insert aluno
     sendStatusJSON created201 (object ["data" .= (fromSqlKey aid)])
-
 
 optionsAlunoWithIdR :: AlunoId -> Handler Value
 optionsAlunoWithIdR _ = optionGenerico "OPTIONS, GET, PUT, DELETE"
