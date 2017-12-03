@@ -29,8 +29,8 @@
 /Compra                                                          CompraInsereR           OPTIONS POST
 /Compra/#CompraId                                                CompraWithIdR           OPTIONS GET PUT DELETE
 
-/ItemCompra                                                      ItemCompraInsereR       POST
-/ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
+/ItemCompra                                                      ItemCompraInsereR       OPTIONS POST
+/ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       OPTIONS GET PUT DELETE
 
 /Aluno/#AlunoId/Restricoes                                       RestricaoByAlunoR       OPTIONS GET
 /Restricao/#AlunoId/#ProdutoId                                   RestricaoR              OPTIONS POST DELETE
