@@ -38,6 +38,7 @@
 /Aluno                                                           AlunoR                  OPTIONS GET POST
 /Aluno/#AlunoId                                                  AlunoWithIdR            OPTIONS GET PUT DELETE
 /Aluno/#AlunoId/Saldo                                            SaldoR                  OPTIONS GET
+/Recarregar                                                      RecarregarR             OPTIONS POST
 
 /Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        OPTIONS GET
 /Aluno/#AlunoId/Alergeno/#AlergenoId                             AlergenoAlunoR          OPTIONS POST DELETE

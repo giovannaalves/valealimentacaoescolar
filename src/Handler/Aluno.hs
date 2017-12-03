@@ -76,3 +76,25 @@ deleteAlunoWithIdR aid = do
     _ <- runDB $ get404 aid
     runDB $ delete aid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
+
+optionsSaldoR :: AlunoId -> Handler Value
+optionsSaldoR _ = optionGenerico "OPTIONS, GET"
+
+getValor :: ContaCorrente -> Double
+getValor (ContaCorrente _ _ 1 s) = s
+getValor (ContaCorrente _ _ _ s) = -s
+
+getSaldoR :: AlunoId -> Handler Value
+getSaldoR aid = do
+    operacoes <- runDB $ selectList [ContaCorrenteIdAluno ==. aid] []
+    let result = sum $ map (getValor.(\(Entity _ o) -> o)) operacoes
+    sendStatusJSON ok200 (object ["data" .= result])
+
+optionsRecarregarR :: Handler Value
+optionsRecarregarR = optionGenerico "OPTIONS, POST"
+
+postRecarregarR :: Handler Value
+postRecarregarR = do
+    conta <- requireJsonBody :: Handler ContaCorrente
+    _ <- runDB $ insert conta
+    sendStatusJSON noContent204 (emptyObject)
