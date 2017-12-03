@@ -11,8 +11,8 @@
 /Categoria    						                             CategoriaR  		     GET POST
 /Categoria/#CategoriaId                                          CategoriaWithIdR        GET PUT DELETE
 
-/Produto                                                         ProdutoR                GET POST
-/Produto/#ProdutoId                                              ProdutoWithIdR          GET PUT DELETE
+/Produto                                                         ProdutoR                OPTIONS GET POST
+/Produto/#ProdutoId                                              ProdutoWithIdR          OPTIONS GET PUT DELETE
 
 /Responsavel                                                     ResponsavelR            OPTIONS GET POST
 /Responsavel/#ResponsavelId                                      ResponsavelWithIdR      OPTIONS GET PUT DELETE
