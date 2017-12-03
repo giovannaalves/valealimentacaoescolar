@@ -17,8 +17,8 @@
 /Responsavel                                                     ResponsavelR            OPTIONS GET POST
 /Responsavel/#ResponsavelId                                      ResponsavelWithIdR      OPTIONS GET PUT DELETE
 
-/ContaCorrente                                                   ContaCorrenteInsereR	 POST
-/ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET DELETE
+/ContaCorrente                                                   ContaCorrenteR	         OPTIONS POST
+/ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    OPTIONS GET DELETE
 
 /Alergeno                                                        AlergenoR               OPTIONS GET POST
 /Alergeno/#AlergenoId                                            AlergenoWithIdR         OPTIONS GET PUT DELETE

@@ -8,20 +8,30 @@ module Handler.ContaCorrente where
 import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
+import Handler.EnableCors
 
-postContaCorrenteInsereR :: Handler Value
-postContaCorrenteInsereR = do
+optionsContaCorrenteR :: Handler Value
+optionsContaCorrenteR = optionGenerico "OPTIONS, POST"
+
+postContaCorrenteR :: Handler Value
+postContaCorrenteR = do
+    addCorsHeader "POST"
     contacorrente <- requireJsonBody :: Handler ContaCorrente
     cid <- runDB $ insert contacorrente
     sendStatusJSON created201 (object ["data" .= (fromSqlKey cid)])
 
+optionsContaCorrenteWithIdR :: ContaCorrenteId -> Handler Value
+optionsContaCorrenteWithIdR _ = optionGenerico "OPTIONS, GET, DELETE"
+
 getContaCorrenteWithIdR :: ContaCorrenteId -> Handler Value
-getContaCorrenteWithIdR cid = do 
+getContaCorrenteWithIdR cid = do
+    addCorsHeader "GET"
     contacorrente <- runDB $ get404 cid
     sendStatusJSON ok200 (object ["data" .= (toJSON contacorrente)])
     
 deleteContaCorrenteWithIdR :: ContaCorrenteId -> Handler Value
-deleteContaCorrenteWithIdR cid = do 
+deleteContaCorrenteWithIdR cid = do
+    addCorsHeader "DELETE"
     _ <- runDB $ get404 cid
     runDB $ delete cid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)])
