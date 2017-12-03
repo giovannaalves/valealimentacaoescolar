@@ -21,7 +21,7 @@
 /ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    GET DELETE
 
 /Alergeno                                                        AlergenoR               OPTIONS GET POST
-/Alergeno/#AlergenoId                                            AlergenoWithIdR         GET PUT DELETE
+/Alergeno/#AlergenoId                                            AlergenoWithIdR         OPTIONS GET PUT DELETE
 
 /Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR      OPTIONS GET
 /Produto/#ProdutoId/Alergeno/#AlergenoId                         AlergenoProdutoR        OPTIONS POST DELETE
