@@ -26,8 +26,8 @@
 /Produto/#ProdutoId/Alergenos                                    AlergenoByProdutoR      OPTIONS GET
 /Produto/#ProdutoId/Alergeno/#AlergenoId                         AlergenoProdutoR        OPTIONS POST DELETE
 
-/Compra                                                          CompraInsereR           POST
-/Compra/#CompraId                                                CompraWithIdR           GET PUT DELETE
+/Compra                                                          CompraInsereR           OPTIONS POST
+/Compra/#CompraId                                                CompraWithIdR           OPTIONS GET PUT DELETE
 
 /ItemCompra                                                      ItemCompraInsereR       POST
 /ItemCompra/#ItemCompraId                                        ItemCompraWithIdR       GET PUT DELETE
