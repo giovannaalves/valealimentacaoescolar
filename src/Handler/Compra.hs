@@ -3,6 +3,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE DeriveGeneric #-}
+
 module Handler.Compra where
 
 import Import
@@ -10,6 +12,16 @@ import Import
 import Database.Persist.Postgresql
 import Data.Time.Clock
 import Data.Time.Calendar
+
+data CompraDto = CompraDto
+    { idAluno :: AlunoId,
+      total :: Double,
+      dataCompra :: Text,
+      itens :: [ItemCompra]}
+      deriving (Generic)
+
+instance FromJSON CompraDto
+instance ToJSON CompraDto 
 
 postCompraInsereR :: Handler Value
 postCompraInsereR = do
@@ -36,3 +48,13 @@ deleteCompraWithIdR cid = do
     _ <- runDB $ get404 cid
     runDB $ delete cid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey cid)])
+    
+postComprarR :: AlunoId -> Handler Value
+postComprarR aid = do
+    compraDto <- requireJsonBody :: Handler CompraDto
+    let itensDaCompra = itens compraDto
+    let total = sum $ map (\ic -> (itemCompraValorItem ic) * (fromIntegral (itemCompraQuantidade ic))) itensDaCompra
+    let compra = Compra aid total (dataCompra compraDto)
+    compraId <- runDB $ insert compra
+    _ <- sequence $ map (runDB.insert) itensDaCompra
+    sendStatusJSON ok200 (object ["data" .= (toJSON compraId)])
