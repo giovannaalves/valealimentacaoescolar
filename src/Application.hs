@@ -50,6 +50,9 @@ import Handler.ItemCompra
 import Handler.Restricao
 import Handler.AlergenoAluno
 import Handler.Aluno
+import Handler.Funcao
+import Handler.Permissao
+
 
 
 -- This line actually creates our YesodDispatch instance. It is the second half

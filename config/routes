@@ -43,3 +43,9 @@
 
 /Aluno/#AlunoId/Alergenos                                        AlergenoByAlunoR        OPTIONS GET
 /Aluno/#AlunoId/Alergeno/#AlergenoId                             AlergenoAlunoR          OPTIONS POST DELETE
+
+/Usuario/#UsuarioId/Permissoes                                   PermissaoByUsuarioR     OPTIONS GET
+/Permissao/#UsuarioId/#FuncaoId                                  PermissaoR              OPTIONS POST DELETE
+
+/Funcao                                                          FuncaoR                 OPTIONS GET POST
+/Funcao/#FuncaoId                                                FuncaoWithIdR           OPTIONS GET PUT DELETE

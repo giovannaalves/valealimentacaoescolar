@@ -66,3 +66,11 @@ AlergenoAluno json
     idAluno                 AlunoId
     idAlergeno              AlergenoId
     UniqueAlergenoAluno     idAluno idAlergeno
+
+Funcao json 
+    nome                    Text
+    
+Permissao json
+    idUsuario               UsuarioId
+    idFuncao                FuncaoId
+    UniquePermissao         idUsuario idFuncao
