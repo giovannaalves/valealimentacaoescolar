@@ -6,7 +6,6 @@
 module Handler.Usuario where
 
 import Import
-import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 import Handler.EnableCors
 

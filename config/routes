@@ -16,6 +16,7 @@
 
 /Responsavel                                                     ResponsavelR            OPTIONS GET POST
 /Responsavel/#ResponsavelId                                      ResponsavelWithIdR      OPTIONS GET PUT DELETE
+/ResponsavelByCpf/#Text                                          ResponsavelByCPFR       OPTIONS GET
 
 /ContaCorrente                                                   ContaCorrenteR	         OPTIONS POST
 /ContaCorrente/#ContaCorrenteId                                  ContaCorrenteWithIdR    OPTIONS GET DELETE

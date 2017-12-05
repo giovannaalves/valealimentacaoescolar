@@ -88,3 +88,13 @@ deleteResponsavelWithIdR rid = do
     _ <- runDB $ get404 rid
     runDB $ delete rid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey rid)])
+    
+optionsResponsavelByCPFR :: Text -> Handler Value
+optionsResponsavelByCPFR _ = optionGenerico "OPTIONS, GET"
+
+
+getResponsavelByCPFR :: Text -> Handler Value
+getResponsavelByCPFR rcpf = do 
+    addCorsHeader "GET"
+    responsavel <- runDB $ getBy $ UniqueCPF rcpf
+    sendStatusJSON ok200 (object ["data" .= (toJSON responsavel)])

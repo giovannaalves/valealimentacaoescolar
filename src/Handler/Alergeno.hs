@@ -50,4 +50,4 @@ deleteAlergenoWithIdR aid = do
     addCorsHeader "DELETE"
     _ <- runDB $ get404 aid
     runDB $ delete aid
-    sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
+    sendStatusJSON noContent204 emptyObject

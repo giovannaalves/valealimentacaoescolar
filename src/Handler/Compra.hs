@@ -10,8 +10,6 @@ module Handler.Compra where
 import Import
 --import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
-import Data.Time.Clock
-import Data.Time.Calendar
 import Handler.EnableCors
 
 data CompraDto = CompraDto

@@ -14,6 +14,7 @@ Responsavel json
     cep                     Text
     idUsuario               UsuarioId
     sexo                    Text
+    UniqueCPF               cpfResponsavel
 
 Aluno json
     nome                    Text
