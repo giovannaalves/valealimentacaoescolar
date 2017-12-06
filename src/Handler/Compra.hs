@@ -14,6 +14,7 @@ import Database.Persist.Postgresql
 import Handler.EnableCors
 import Network.Mail.SMTP
 import qualified Data.Text.Lazy as L (pack)
+--import qualified Network.Sendgrid.Api as Sendgrid
 
 from       = Address Nothing "tni04@hotmail.com"
 to         = [Address (Just "Vae Card") "vaecard@gmail.com"]
@@ -41,7 +42,7 @@ postCompraInsereR = do
     addCorsHeader "POST"
     compra <- requireJsonBody :: Handler Compra
     cid <- runDB $ insert compra
-    contacorrente <- return $ ContaCorrente (compraIdAluno compra) "2017-12-02" 1 (compraTotal compra)
+    contacorrente <- return $ ContaCorrente (compraIdAluno compra) "2017-12-02" 2 (compraTotal compra)
     _ <- runDB $ insert contacorrente
     sendStatusJSON created201 (object ["data" .= (fromSqlKey cid)])
     
@@ -78,17 +79,33 @@ postComprarR aid = do
     let compra = Compra aid total (dataCompra compraDto)
     compraId <- runDB $ insert compra
     _ <- sequence $ map (runDB.insert) itensDaCompra
-    aluno' <- runDB $ get aid
-    let aluno = (\(Just x) -> x) aluno'
-    let cpf = alunoCpfResponsavel aluno
-    responsavel <- fmap (\(Just (Entity _ obj)) -> obj) $ runDB $ getBy $ UniqueCPF cpf
-    let iduser = responsavelIdUsuario responsavel
-    usuario <- runDB $ get iduser 
-    let emailresp = (\(Just x) -> x) $ fmap usuarioEmail usuario
-    let emailto = [Address Nothing emailresp]
-    let mensagem = L.pack ("Nova compra realizada! O Aluno " ++ (show $ alunoNome aluno) ++ " realizou uma nova compra no valor de: " ++ (show total))
-    let body = plainTextPart mensagem
-    let mail = simpleMail from emailto cc bcc subject [body, html]
-    liftIO $ sendMailWithLogin "smtp.gmail.com" "vaecard@gmail.com" "vaencio123" mail
+    --aluno' <- runDB $ get aid
+    --let aluno = (\(Just x) -> x) aluno'
+    --let cpf = alunoCpfResponsavel aluno
+    --responsavel <- fmap (\(Just (Entity _ obj)) -> obj) $ runDB $ getBy $ UniqueCPF cpf
+    --let iduser = responsavelIdUsuario responsavel
+    --usuario <- runDB $ get iduser 
+    --let emailresp = (\(Just x) -> x) $ fmap usuarioEmail usuario
+    --let emailto = [Address Nothing emailresp]
+    --let mensagem = L.pack ("Nova compra realizada! O Aluno " ++ (show $ alunoNome aluno) ++ " realizou uma nova compra no valor de: " ++ (show total))
+    --let body = plainTextPart mensagem
+    --message = SendGrid.EmailMessage { to      = emailresp
+    --                                , from    = "vaecard@gmail.com"
+    --                                , subject = "VAE - Compra realizada"
+    --                                , text    = mensagem
+    --SendGrid.sendEmail (Authentication "VaeCard" "vaencio123") message
+    --let mail = simpleMail from emailto cc bcc subject [body, html]
+    --liftIO $ sendMailWithLogin "smtp.gmail.com" "vaecard@gmail.com" "vaencio123" mail
     --liftIO $ renderSendMail mail
     sendStatusJSON ok200 (object ["data" .= (toJSON compraId)])
+    
+
+-- Create an Email message
+
+{-getSendEmailR :: Handler Value
+getSendEmailR = do
+    message = SendGrid.EmailMessage { to      = "vaecard@gmail.com"
+                                    , from    = "vaecard@gmail.com"
+                                    , subject = "VAE - Compra realizada"
+                                    , text    = "TESTE"
+    SendGrid.sendEmail (Authentication "VaeCard" "vaencio123") message-}

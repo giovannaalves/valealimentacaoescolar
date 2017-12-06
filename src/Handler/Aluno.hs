@@ -42,6 +42,7 @@ optionsAlunoR = optionGenerico "OPTIONS, GET, POST"
 
 getAlunoR :: Handler Value
 getAlunoR = do
+    addCorsHeader "GET"
     alunos <- runDB $ selectList [] [Asc AlunoNome]
     sendStatusJSON ok200 (object ["data" .= (toJSON alunos)])
 
@@ -61,11 +62,13 @@ optionsAlunoWithIdR _ = optionGenerico "OPTIONS, GET, PUT, DELETE"
 
 getAlunoWithIdR :: AlunoId -> Handler Value
 getAlunoWithIdR aid = do 
+    addCorsHeader "GET"
     aluno <- runDB $ get404 aid
     sendStatusJSON ok200 (object ["data" .= (toJSON aluno)])
 
 putAlunoWithIdR :: AlunoId -> Handler Value
 putAlunoWithIdR aid = do
+    addCorsHeader "PUT"
     _ <- runDB $ get404 aid
     novoAluno <- requireJsonBody :: Handler Aluno
     runDB $ replace aid novoAluno
@@ -73,6 +76,7 @@ putAlunoWithIdR aid = do
 
 deleteAlunoWithIdR :: AlunoId -> Handler Value
 deleteAlunoWithIdR aid = do 
+    addCorsHeader "DELETE"
     _ <- runDB $ get404 aid
     runDB $ delete aid
     sendStatusJSON noContent204 (object ["data" .= (fromSqlKey aid)])
@@ -86,6 +90,7 @@ getValor (ContaCorrente _ _ _ s) = -s
 
 getSaldoR :: AlunoId -> Handler Value
 getSaldoR aid = do
+    addCorsHeader "GET"
     operacoes <- runDB $ selectList [ContaCorrenteIdAluno ==. aid] []
     let result = sum $ map (getValor.(\(Entity _ o) -> o)) operacoes
     sendStatusJSON ok200 (object ["data" .= result])
@@ -95,6 +100,7 @@ optionsRecarregarR = optionGenerico "OPTIONS, POST"
 
 postRecarregarR :: Handler Value
 postRecarregarR = do
+    addCorsHeader "POST"
     conta <- requireJsonBody :: Handler ContaCorrente
     _ <- runDB $ insert conta
     sendStatusJSON noContent204 (emptyObject)

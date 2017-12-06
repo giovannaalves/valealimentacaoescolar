@@ -18,7 +18,7 @@ getRestricaoByAlunoR rid = do
     restricoes' <- runDB $ selectList [RestricaoIdAluno ==. rid] []
     restricoes <- return $ fmap (\(Entity _ alo) -> alo) restricoes'
     pids <- return $ fmap restricaoIdProduto restricoes 
-    produtos <- sequence $ fmap (\pid -> runDB $ get404 pid) pids
+    produtos <- sequence $ fmap (\pid -> fmap (\(Just e) -> Entity pid e) $ runDB $ get pid) pids
     sendStatusJSON ok200 (object ["data" .= (toJSON produtos)])
 
 
