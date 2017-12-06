@@ -16,8 +16,8 @@ getPermissaoByUsuarioR :: UsuarioId -> Handler Value
 getPermissaoByUsuarioR rid = do 
     addCorsHeader "GET"
     permissoes' <- runDB $ selectList [PermissaoIdUsuario ==. rid] []
-    permissoes <- return $ fmap (\(Entity _ alo) -> alo) permissoes'
-    pids <- return $ fmap permissaoIdFuncao permissoes 
+    let permissoes = fmap (\(Entity _ alo) -> alo) permissoes'
+    let pids = fmap permissaoIdFuncao permissoes 
     funcoes <- sequence $ fmap (\pid -> runDB $ get404 pid) pids
     sendStatusJSON ok200 (object ["data" .= (toJSON funcoes)])
 

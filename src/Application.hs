@@ -52,6 +52,7 @@ import Handler.AlergenoAluno
 import Handler.Aluno
 import Handler.Funcao
 import Handler.Permissao
+import Handler.Login
 
 
 

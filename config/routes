@@ -49,3 +49,4 @@
 
 /Funcao                                                          FuncaoR                 OPTIONS GET POST
 /Funcao/#FuncaoId                                                FuncaoWithIdR           OPTIONS GET PUT DELETE
+/Login                                                           LoginVAER               OPTIONS POST

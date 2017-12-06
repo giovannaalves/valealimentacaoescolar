@@ -3,6 +3,7 @@ Usuario json
     senha                   Text
     email                   Text
     tipo                    Int
+    UniqueLogin             login senha
 
 Responsavel json
     nome                    Text
@@ -15,6 +16,7 @@ Responsavel json
     idUsuario               UsuarioId
     sexo                    Text
     UniqueCPF               cpfResponsavel
+    UniqueUserResponsavel   idUsuario
 
 Aluno json
     nome                    Text
@@ -24,7 +26,8 @@ Aluno json
     status                  Text
     idUsuario               UsuarioId
     dataNascimento          Text
-    
+    UniqueUserAluno         idUsuario
+
 Categoria json
     nome                    Text
     

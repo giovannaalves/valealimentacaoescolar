@@ -5,12 +5,23 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE DeriveGeneric #-}
 
+
 module Handler.Compra where
 
 import Import
 --import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 import Handler.EnableCors
+import Network.Mail.SMTP
+import qualified Data.Text.Lazy as L (pack)
+
+from       = Address Nothing "tni04@hotmail.com"
+to         = [Address (Just "Vae Card") "vaecard@gmail.com"]
+cc         = []
+bcc        = []
+subject    = "VALE ALIMENTAÇÃO ESCOLAR"
+--body       = plainTextPart "Nova compra realizada!"
+html       = htmlPart "<h1>HTML</h1>"
 
 data CompraDto = CompraDto
     { idAluno :: AlunoId,
@@ -67,4 +78,17 @@ postComprarR aid = do
     let compra = Compra aid total (dataCompra compraDto)
     compraId <- runDB $ insert compra
     _ <- sequence $ map (runDB.insert) itensDaCompra
+    aluno' <- runDB $ get aid
+    let aluno = (\(Just x) -> x) aluno'
+    let cpf = alunoCpfResponsavel aluno
+    responsavel <- fmap (\(Just (Entity _ obj)) -> obj) $ runDB $ getBy $ UniqueCPF cpf
+    let iduser = responsavelIdUsuario responsavel
+    usuario <- runDB $ get iduser 
+    let emailresp = (\(Just x) -> x) $ fmap usuarioEmail usuario
+    let emailto = [Address Nothing emailresp]
+    let mensagem = L.pack ("Nova compra realizada! O Aluno " ++ (show $ alunoNome aluno) ++ " realizou uma nova compra no valor de: " ++ (show total))
+    let body = plainTextPart mensagem
+    let mail = simpleMail from emailto cc bcc subject [body, html]
+    liftIO $ sendMailWithLogin "smtp.gmail.com" "vaecard@gmail.com" "vaencio123" mail
+    --liftIO $ renderSendMail mail
     sendStatusJSON ok200 (object ["data" .= (toJSON compraId)])
